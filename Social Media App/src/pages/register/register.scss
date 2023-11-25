@@ -1,0 +1,81 @@
+@import "../../style.scss";
+
+.register{
+    min-height: 100vh;
+    background-color: lightpink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .card{
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 10px;
+        min-height: 500px;
+        overflow: hidden;
+        .left{
+            width: 300px;
+            background:linear-gradient(rgba(255, 192, 203, 0.459),rgba(0, 0, 0, 0.545)), url('https://images.unsplash.com/photo-1685321429849-188d84461c8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60') center;
+            background-size: cover;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            color: white;
+            h1{
+                font-size: 100px;
+                line-height: 100px;
+            }
+            p{
+                
+            }
+            span{
+                font-size: 14px;
+            }
+            button{
+                width: 50%;
+                padding: 10px;
+                border: none;
+                background-color: white;
+                color: purple;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+        .right{
+            width: 300px;
+            background-color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            justify-content: center;
+            h1{
+                color: #555;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                input{
+                    border: none;
+                    border-bottom: 1px solid lightgray;
+                    padding: 20px 10px;
+
+                }
+                button{
+                    cursor: pointer;
+                    width: 50%;
+                    padding: 10px;
+                    border: none;
+                    background-color: #938eef;
+                    color: white;
+                    font-weight: bold;
+
+                }
+            }
+
+        }
+    }
+}
