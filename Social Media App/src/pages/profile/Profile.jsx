@@ -4,7 +4,7 @@ import Posts from "../../components/posts/Posts"
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { makeRequest } from '../../axios'
 import { useParams } from 'react-router-dom'
-import { useContext, useState,} from 'react'
+import { useContext,  useState,} from 'react'
 import { AuthContext } from '../../context/authContext'
 import Update from '../../components/update/Update'
 
@@ -13,10 +13,10 @@ const Profile = () => {
   const {currentUser}=useContext(AuthContext);
 
   const [update,setUpdate]=useState(false);
-
   const params=useParams();
+  
 
-  const {  isLoading ,error,data } = useQuery('user', () =>
+  const {  isLoading ,error,data } = useQuery(['user',params.id], () =>
     makeRequest.get("/user/"+params.id).then(res=>res.data)
   )
 
@@ -26,13 +26,15 @@ const Profile = () => {
 
   const queryClient=useQueryClient();
 
+  
+  
   const mutation = useMutation((follows)=>{
     if(follows)return makeRequest.delete('/relationships',{data:{userid:params.id}});
   return makeRequest.post("/relationships",{userid:params.id});
 }, {
   onSuccess: () => {
     // Invalidate and refetch
-    queryClient.invalidateQueries('relations')
+    queryClient.invalidateQueries()
   },})
 
   const handleFollow=()=>{

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios";
+import { AuthContext } from "../../context/authContext";
 import "./update.scss";
 
 const Update = ({setUpdate,currentUser}) => {
 
+  const {update}=useContext(AuthContext);
 
     const [cover,setCover]=useState(null);
     const [profile,setProfile]=useState(null);
@@ -34,6 +36,7 @@ const Update = ({setUpdate,currentUser}) => {
     const queryClient=useQueryClient();
 
     const mutation = useMutation((user)=>{
+      update(user);
       return makeRequest.put("/user",user);
     }, {
       onSuccess: () => {
@@ -58,8 +61,8 @@ const Update = ({setUpdate,currentUser}) => {
         <div className="head">
         <h1>Update </h1><span onClick={()=>setUpdate(false)}>X</span>
         </div>
-        <input type="file" name="cover"  onChange={(e)=>setCover(e.target.files[0])}/>
-        <input type="file" name="profile"  onChange={(e)=>setProfile(e.target.files[0])}/>
+        <div>Cover Photo : <input type="file" name="cover"  onChange={(e)=>setCover(e.target.files[0])}/></div>
+        <div>Profile Photo : <input type="file" name="profile"  onChange={(e)=>setProfile(e.target.files[0])}/></div>
         <div className="name">
             Name : 
             <input type="text" name="name" onChange={handleChange} value={texts.name}/>

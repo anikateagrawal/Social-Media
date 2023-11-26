@@ -6,6 +6,7 @@ import Memories from "../../assets/memories.png";
 import Watch from "../../assets/watch.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
+import { Link } from "react-router-dom";
 const LeftBar = () => {
   const {currentUser,logout}=useContext(AuthContext);
   const [logoutbtn,setLogout]=useState(false);
@@ -25,10 +26,10 @@ const LeftBar = () => {
             <span>{currentUser.name}</span>
           </div>
           {logoutbtn && <button onClick={handleLogout}>Logout</button>}
-          <div className="item">
+          <Link to={"/profile/"+currentUser.id} className="item">
             <img src={Friends} alt="" />
-            <span>Friends</span>
-          </div>
+            <span>Profile</span>
+          </Link>
           <div className="item">
             <img src={Group} alt="" />
             <span>Groups</span>

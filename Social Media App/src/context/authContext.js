@@ -19,10 +19,14 @@ export const AuthContextProvider=({children})=>{
         await makeRequest.post("/auth/logout");
     }
 
+    const update=(user)=>{
+        setCurrentUser(prev=>({id:prev.id,...user}))
+    }
+
     useEffect(()=>{
         localStorage.setItem("user",JSON.stringify(currentUser))
     },[currentUser]);
 
-    return <AuthContext.Provider value={{currentUser,login,logout}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{currentUser,login,logout,update}}>{children}</AuthContext.Provider>
 }
 
