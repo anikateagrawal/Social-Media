@@ -12,6 +12,7 @@ const Comments = ({postid,data}) => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         mutation.mutate({desc,postid});
+        setDesc("");
     }
 
     const queryClient=useQueryClient();
@@ -30,7 +31,7 @@ const Comments = ({postid,data}) => {
   return (
     <div className='comments'>
         <div className="write">
-            <img src={currentUser.profilePic} alt="" />
+            <img src={"/upload/"+currentUser.profilePic} alt="" />
             <input type="text" placeholder='write a comment' value={desc} onChange={e=>setDesc(e.target.value)}/>
             <button onClick={handleSubmit}>Send</button>
         </div>

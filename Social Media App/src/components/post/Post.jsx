@@ -50,7 +50,7 @@ const Post = ({post}) => {
   )
   
 
-  const { isLoading:load,  data:cdata } = useQuery('comments', () =>
+  const { isLoading:load,  data:cdata } = useQuery(['comments',post.id], () =>
     makeRequest.get("/comments?postid="+post.id).then(res=>res.data)
   )
 
